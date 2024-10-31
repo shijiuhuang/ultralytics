@@ -1,0 +1,9 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Collecting onnx
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/0e/d3/d26ebf590a65686dde6b27fef32493026c5be9e42083340d947395f93405/onnx-1.17.0-cp310-cp310-win_amd64.whl (14.5 MB)
+     ---------------------------------------- 14.5/14.5 MB 2.1 MB/s eta 0:00:00
+Requirement already satisfied: numpy>=1.20 in e:\anaconda\envs\yolo11\lib\site-packages (from onnx) (1.26.3)
+Collecting protobuf>=3.20.2 (from onnx)
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/9c/4c/4563ebe001ff30dca9d7ed12e471fa098d9759712980cde1fd03a3a44fb7/protobuf-5.28.3-cp310-abi3-win_amd64.whl (431 kB)
+Installing collected packages: protobuf, onnx
+Successfully installed onnx-1.17.0 protobuf-5.28.3

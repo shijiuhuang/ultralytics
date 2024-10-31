@@ -1,0 +1,12 @@
+path: D:\\yolov11\\datasets
+train: train\\images
+val: val\\images
+test: test\\images
+
+kpt_shape: [4, 3]
+flip_idx: []
+
+nc: 2
+names:
+  0: Blue
+  1: Red
