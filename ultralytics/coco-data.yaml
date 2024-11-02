@@ -1,4 +1,4 @@
-path: D:\\yolov11\\datasets
+path: D:\\yolov11\\datasets640x640
 train: train\\images
 val: val\\images
 test: test\\images
