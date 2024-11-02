@@ -86,6 +86,8 @@ from .transformer import (
     TransformerLayer,
 )
 
+from .GSConv import GSConv
+
 __all__ = (
     "Conv",
     "Conv2",
@@ -156,4 +158,5 @@ __all__ = (
     "C2fCIB",
     "Attention",
     "PSA",
+    "GSConv",
 )
