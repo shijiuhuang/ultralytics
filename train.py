@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 if __name__ == '__main__':
     # model = YOLO(r'D:\yolov11\ultralytics\ultralytics\yolo11n-pose.pt')
-    model = YOLO(model=r'D:\yolov11\ultralytics\ultralytics\cfg\models\11\yolo11-pose_GSconv.yaml')
+    model = YOLO(model=r'D:\yolov11\ultralytics\ultralytics\cfg\models\11\yolo11-pose_C2f_DCNv4.yaml')
     model.load(r'D:\yolov11\ultralytics\ultralytics\yolo11n-pose.pt')
     model.train(data=r'D:\yolov11\ultralytics\ultralytics\coco-data.yaml',
                 task='pose',

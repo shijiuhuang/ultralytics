@@ -11,6 +11,7 @@ import torch
 import torch.nn as nn
 
 from ultralytics.nn.modules import GSConv
+from ultralytics.nn.modules import C2f_DCNv4
 
 from ultralytics.nn.modules import (
     AIFI,
@@ -335,7 +336,17 @@ class DetectionModel(BaseModel):
                     return self.forward(x)["one2many"]
                 return self.forward(x)[0] if isinstance(m, (Segment, Pose, OBB)) else self.forward(x)
 
-            m.stride = torch.tensor([s / x.shape[-2] for x in _forward(torch.zeros(1, ch, s, s))])  # forward
+            
+            try:
+                m.stride = torch.tensor([s / x.shape[-2] for x in _forward(torch.zeros(1, ch, s, s))])  # forward on CPU
+            except RuntimeError:
+                try:
+                    self.model.to(torch.device('cuda'))
+                    m.stride = torch.tensor([s / x.shape[-2] for x in _forward(
+                        torch.zeros(1, ch, s, s).to(torch.device('cuda')))])  # forward on CUDA
+                except RuntimeError as error:
+                    raise error
+            # m.stride = torch.tensor([s / x.shape[-2] for x in _forward(torch.zeros(1, ch, s, s))])  # forward
             self.stride = m.stride
             m.bias_init()  # only run once
         else:
@@ -1002,6 +1013,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             SCDown,
             C2fCIB,
             GSConv,
+            C2f_DCNv4,
         }:
             c1, c2 = ch[f], args[0]
             if c2 != nc:  # if c2 not equal to number of classes (i.e. for Classify() output)

@@ -87,6 +87,8 @@ from .transformer import (
 )
 
 from .GSConv import GSConv
+from .C2f_DCNv4 import C2f_DCNv4
+
 
 __all__ = (
     "Conv",
@@ -159,4 +161,5 @@ __all__ = (
     "Attention",
     "PSA",
     "GSConv",
+    "C2f_DCNv4",
 )
