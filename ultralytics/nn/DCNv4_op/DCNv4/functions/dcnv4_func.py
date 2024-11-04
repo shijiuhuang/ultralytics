@@ -13,7 +13,8 @@ import math
 import torch.nn.functional as F
 from torch.autograd import Function
 from torch.autograd.function import once_differentiable
-from torch.cuda.amp import custom_bwd, custom_fwd
+# from torch.cuda.amp import custom_bwd, custom_fwd
+from torch import amp 
 from .table import TABLE, BWDTABLE
 
 from DCNv4 import ext
@@ -61,7 +62,8 @@ def find_spec_bwd(B, H, W, G, C):
 
 class DCNv4Function(Function):
     @staticmethod
-    @custom_fwd
+    # @custom_fwd
+    @amp.custom_fwd(device_type='cuda')
     def forward(
             ctx, input, offset_mask,
             kernel_h, kernel_w, stride_h, stride_w,
@@ -107,7 +109,8 @@ class DCNv4Function(Function):
 
     @staticmethod
     @once_differentiable
-    @custom_bwd
+    # @custom_bwd
+    @amp.custom_bwd(device_type='cuda')
     def backward(ctx, grad_output):
         input, offset_mask = ctx.saved_tensors
 

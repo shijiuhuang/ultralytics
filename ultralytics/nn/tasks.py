@@ -12,6 +12,7 @@ import torch.nn as nn
 
 from ultralytics.nn.modules import GSConv
 from ultralytics.nn.modules import C2f_DCNv4
+from ultralytics.nn.modules import C2f_FasterBlock
 
 from ultralytics.nn.modules import (
     AIFI,
@@ -1014,6 +1015,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             C2fCIB,
             GSConv,
             C2f_DCNv4,
+            C2f_FasterBlock,
         }:
             c1, c2 = ch[f], args[0]
             if c2 != nc:  # if c2 not equal to number of classes (i.e. for Classify() output)
